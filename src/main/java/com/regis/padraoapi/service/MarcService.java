@@ -1,5 +1,6 @@
 package com.regis.padraoapi.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class MarcService {
 	public Marc listarMarcaUnica(Integer id) {
 		Optional<Marc> marc = marcRepository.findById(id);
 		return marc.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Marc.class.getName()));
+	}
+	
+	public List<Marc> findAll() {
+		return marcRepository.findAll();
 	}
 	
 }
