@@ -25,7 +25,7 @@ public class MarcService {
 		return marc.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Marc.class.getName()));
 	}
 	
-	public List<Marc> findAll() {
+	public List<Marc> listarMarcas() {
 		return marcRepository.findAll();
 	}
 	

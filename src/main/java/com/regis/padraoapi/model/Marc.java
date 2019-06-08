@@ -2,6 +2,7 @@ package com.regis.padraoapi.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Marc implements Serializable {
@@ -19,6 +22,9 @@ public class Marc implements Serializable {
 	private Integer id;
 	private long codimarc;
 	private String dscr;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+	private Date dataCadastro;
 
 	@OneToMany(mappedBy="marc")
 	private List<Prod> prod = new ArrayList<>();
@@ -26,11 +32,12 @@ public class Marc implements Serializable {
 	public Marc() {
 	}
 
-	public Marc(Integer id, long codimarc, String dscr) {
+	public Marc(Integer id, long codimarc, String dscr, Date dataCadastro) {
 		super();
 		this.id = id;
 		this.codimarc = codimarc;
 		this.dscr = dscr;
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Integer getId() {
@@ -56,6 +63,12 @@ public class Marc implements Serializable {
 	}
 	public void setProd(List<Prod> prod) {
 		this.prod = prod;
+	}
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	@Override

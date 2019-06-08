@@ -35,8 +35,8 @@ public class MarcResource {
 	}
 	
 	@GetMapping("")
-	public ResponseEntity<List<MarcDTO>> findAll() {
-		List<Marc> list = marcService.findAll();
+	public ResponseEntity<List<MarcDTO>> listarMarcas() {
+		List<Marc> list = marcService.listarMarcas();
 		List<MarcDTO> listDto = list.stream().map(obj -> new MarcDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
