@@ -1,5 +1,7 @@
 package com.regis.padraoapi.resource;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +27,8 @@ public class ProdResource {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Prod> listarProdutoUnico(@PathVariable Integer id) {
-		Prod prod = prodService.listarProdutoUnico(id);
+	public ResponseEntity<Optional<Prod>> listarProdutoUnico(@PathVariable Integer id) {
+		Optional<Prod> prod = prodService.listarProdutoUnico(id);
 		return ResponseEntity.ok().body(prod);
 	}
 	

@@ -1,6 +1,7 @@
 package com.regis.padraoapi.resource;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class MarcResource {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Marc> listarMarcaUnica(@PathVariable Integer id) {
-		Marc marc = marcService.listarMarcaUnica(id);
+	public ResponseEntity<Optional<Marc>> listarMarcaUnica(@PathVariable Integer id) {
+		Optional<Marc> marc = marcService.listarMarcaUnica(id);
 		return ResponseEntity.ok().body(marc);
 	}
 	

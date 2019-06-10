@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.regis.padraoapi.model.Marc;
 import com.regis.padraoapi.repository.MarcRepository;
-import com.regis.padraoapi.service.exception.ObjectNotFoundException;
 
 @Service
 public class MarcService {
@@ -20,9 +19,9 @@ public class MarcService {
 		return marcRepository.save(marc);
 	}
 	
-	public Marc listarMarcaUnica(Integer id) {
+	public Optional<Marc> listarMarcaUnica(Integer id) {
 		Optional<Marc> marc = marcRepository.findById(id);
-		return marc.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Marc.class.getName()));
+		return marc;
 	}
 	
 	public List<Marc> listarMarcas() {

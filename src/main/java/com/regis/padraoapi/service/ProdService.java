@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.regis.padraoapi.model.Prod;
 import com.regis.padraoapi.repository.ProdRepository;
-import com.regis.padraoapi.service.exception.ObjectNotFoundException;
 
 @Service
 public class ProdService {
@@ -19,9 +18,9 @@ public class ProdService {
 		return prodRepository.save(prod);
 	}
 	
-	public Prod listarProdutoUnico(Integer id) {
+	public Optional<Prod> listarProdutoUnico(Integer id) {
 		Optional<Prod> prod = prodRepository.findById(id);
-		return prod.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Prod.class.getName()));
+		return prod;
 	}
 	
 }
