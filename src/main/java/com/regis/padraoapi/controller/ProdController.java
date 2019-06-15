@@ -1,4 +1,4 @@
-package com.regis.padraoapi.resource;
+package com.regis.padraoapi.controller;
 
 import java.util.Optional;
 
@@ -14,18 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.regis.padraoapi.model.Prod;
 import com.regis.padraoapi.service.ProdService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="API REST padrão", tags = {"Produtos"})
 @RestController
-@RequestMapping("/produtos")
-public class ProdResource {
+@RequestMapping("padraoapi/produtos")
+public class ProdController {
 	
 	@Autowired
 	private ProdService prodService;
 
+	@ApiOperation(value="Cadastra um produto")
 	@PostMapping("")
 	public Prod cadastrarProduto(@RequestBody Prod prod) {
 		return prodService.cadastrarProduto(prod);
 	}
 	
+	@ApiOperation(value="Cadastra um produto por id")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Prod>> listarProdutoUnico(@PathVariable Integer id) {
 		Optional<Prod> prod = prodService.listarProdutoUnico(id);

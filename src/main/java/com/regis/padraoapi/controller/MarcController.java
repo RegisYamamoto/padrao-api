@@ -1,4 +1,4 @@
-package com.regis.padraoapi.resource;
+package com.regis.padraoapi.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,24 +17,31 @@ import com.regis.padraoapi.dto.MarcDTO;
 import com.regis.padraoapi.model.Marc;
 import com.regis.padraoapi.service.MarcService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="API REST padrão", tags = {"Marcas"})
 @RestController
-@RequestMapping("/marcas")
-public class MarcResource {
+@RequestMapping("padraoapi/marcas")
+public class MarcController {
 
 	@Autowired
 	private MarcService marcService;
 	
+	@ApiOperation(value="Cadastra uma marca")
 	@PostMapping("")
 	public Marc cadastrarMarca(@RequestBody Marc marc) {
 		return marcService.cadastrarMarca(marc);
 	}
 	
+	@ApiOperation(value="Retorna uma marca por id")
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Marc>> listarMarcaUnica(@PathVariable Integer id) {
 		Optional<Marc> marc = marcService.listarMarcaUnica(id);
 		return ResponseEntity.ok().body(marc);
 	}
 	
+	@ApiOperation(value="Retorna uma lista com todas as mascas cadastradas")
 	@GetMapping("")
 	public ResponseEntity<List<MarcDTO>> listarMarcas() {
 		List<Marc> list = marcService.listarMarcas();
