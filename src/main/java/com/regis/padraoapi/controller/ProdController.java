@@ -1,7 +1,5 @@
 package com.regis.padraoapi.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.regis.padraoapi.dto.ProdDTO;
 import com.regis.padraoapi.model.Prod;
 import com.regis.padraoapi.service.ProdService;
 
@@ -33,8 +32,8 @@ public class ProdController {
 	
 	@ApiOperation(value="Cadastra um produto por id")
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Prod>> listarProdutoUnico(@PathVariable Integer id) {
-		Optional<Prod> prod = prodService.listarProdutoUnico(id);
+	public ResponseEntity<ProdDTO> listarProdutoUnico(@PathVariable Integer id) {
+		ProdDTO prod = prodService.listarProdutoUnico(id);
 		return ResponseEntity.ok().body(prod);
 	}
 	
