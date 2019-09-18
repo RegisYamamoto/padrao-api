@@ -1,5 +1,7 @@
 package com.regis.padraoapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,13 @@ public class ProdController {
 	public ResponseEntity<ProdDTO> listarProdutoUnico(@PathVariable Integer id) {
 		ProdDTO prod = prodService.listarProdutoUnico(id);
 		return ResponseEntity.ok().body(prod);
+	}
+	
+	@ApiOperation(value="Listar todos os produtos")
+	
+	@GetMapping()
+	public List<Prod> listarTodosOsProdutosa() {
+		return prodService.listarTodosOsProdutos();
 	}
 	
 }

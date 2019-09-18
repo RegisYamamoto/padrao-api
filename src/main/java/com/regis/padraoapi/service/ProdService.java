@@ -1,5 +1,7 @@
 package com.regis.padraoapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,11 @@ public class ProdService {
 			prodDto.setMensagem("Produto inexistente");
 			return prodDto;
 		}
+	}
+	
+	
+	public List<Prod> listarTodosOsProdutos() {
+		return prodRepository.findAll();
 	}
 	
 }
